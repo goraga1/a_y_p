@@ -25,6 +25,7 @@
             android:id="@+id/videoTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="TITLE"
             android:textColor="#f0f0f0"
             android:textSize="12sp"
@@ -34,6 +35,7 @@
             android:id="@+id/videoDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Description"
             android:textColor="#f0f0f0"
             android:textSize="12sp" />
@@ -42,6 +44,7 @@
             android:id="@+id/videoDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="14.11.2014"
             android:textColor="#f0f0f0"
             android:textSize="12sp" />
