@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import android.app.ActionBar;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -26,7 +27,8 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.radioaypfm.aypfm.fragments.Fragment1;
+import com.radioaypfm.aypfm.fragments.FragmentMain;
+import com.radioaypfm.aypfm.fragments.FragmentVideo;
 import com.radioaypfm.aypfm.util.Constants;
 import com.radioaypfm.aypfm.util.PreferenceUtilities;
 import com.radioaypfm.aypfm.util.Utilities;
@@ -193,34 +195,34 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private void displayView(int position) {
 		// update the main content by replacing fragments
 		String TAG = "";
-		Fragment1 fragment = null;
+		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new Fragment1();
+			fragment = new FragmentMain();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 1:
-			fragment = new Fragment1();
+			fragment = new FragmentMain();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 2:
-			fragment = new Fragment1();
+			fragment = new FragmentMain();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 3:
-			fragment = new Fragment1();
+			fragment = new FragmentVideo();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 4:
-			fragment = new Fragment1();
+			fragment = new FragmentMain();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 5:
-			fragment = new Fragment1();
+			fragment = new FragmentMain();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 6:
-			fragment = new Fragment1();
+			fragment = new FragmentMain();
 			TAG = "HOME_FRAGMENT";
 			break;
 		default:

@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import com.radioaypfm.aypfm.R;
 
-public class Fragment1 extends Fragment {
+public class FragmentMain extends Fragment {
 
-	public Fragment1() {
+	public FragmentMain() {
 	}
 
 	@Override

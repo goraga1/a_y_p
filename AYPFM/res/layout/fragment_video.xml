@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent" >
+
+    <ListView
+        android:id="@+id/listViewVideos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp" >
+    </ListView>
+
+    <Button
+        android:id="@+id/loadMoreVideos"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="#252525"
+        android:text="Charger plus de vidéo..."
+        android:textColor="#f0f0f0"
+        android:textSize="12sp" />
+
+</RelativeLayout>

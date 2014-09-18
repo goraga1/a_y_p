@@ -20,4 +20,5 @@ public class Constants {
 	public static final String KEY_CREATED_AT = "created_at";
 
 	public static String FONT_HELVETICA_ROMAN = "HelveticaNeueLTStd-Th.otf";
+	public static String FONT_HELVETICA_MD = "HelveticaNeueLTStd-Md.otf";
 }
