@@ -28,6 +28,7 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.radioaypfm.aypfm.fragments.FragmentMain;
+import com.radioaypfm.aypfm.fragments.FragmentPlayer;
 import com.radioaypfm.aypfm.fragments.FragmentVideo;
 import com.radioaypfm.aypfm.util.Constants;
 import com.radioaypfm.aypfm.util.PreferenceUtilities;
@@ -54,8 +55,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		}
 
 		aq = new AQuery(MainActivity.this);
-		getRegId();
+		// / getRegId();
 
+		initFragment(new FragmentPlayer());
+	}
+
+	protected void initFragment(Fragment fragment) {
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		FragmentTransaction fragmentTransaction = fragmentManager
+				.beginTransaction();
+		fragmentTransaction.replace(android.R.id.content, fragment);
+		fragmentTransaction.commit();
 	}
 
 	public void getRegId() {
