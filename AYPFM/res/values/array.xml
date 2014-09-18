@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_launcher</item>
+    </array>
+
+    <string-array name="nav_drawer_items">
+        <item>ACCUEIL</item>
+        <item>QUI SOMMES-NOUS?</item>
+        <item>RADIO EN LIVE</item>
+        <item>VIDÉO AYPFM</item>
+        <item>NOS ANNONCES</item>
+        <item>ALLER SUR AYPFM</item>
+        <item>CONTACTEZ NOUS</item>
+    </string-array>
+
+</resources>

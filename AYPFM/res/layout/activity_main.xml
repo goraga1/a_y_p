@@ -1,38 +1,268 @@
-<!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.radioaypfm.aypfm.MainActivity" >
+    android:background="@drawable/background" >
 
-    <!--
-         As the main content view, the view below consumes the entire
-         space available using match_parent in both dimensions.
-    -->
+    <!-- Framelayout to display Fragments -->
 
     <FrameLayout
-        android:id="@+id/container"
+        android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!--
-         android:layout_gravity="start" tells DrawerLayout to treat
-         this as a sliding drawer on the left side for left-to-right
-         languages and on the right side for right-to-left languages.
-         If you're not building against API 17 or higher, use
-         android:layout_gravity="left" instead.
-    -->
-    <!--
-         The drawer is given a fixed width in dp and extends the full height of
-         the container.
-    -->
+    <!-- Listview to display slider menu -->
 
-    <fragment
-        android:id="@+id/navigation_drawer"
-        android:name="com.radioaypfm.aypfm.NavigationDrawerFragment"
+    <RelativeLayout
+        android:id="@+id/list_slidermenu"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
-        android:layout_gravity="start" />
+        android:layout_gravity="start"
+        android:background="#252525" >
+
+        <LinearLayout
+            android:id="@+id/slidermenu_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#484848" />
+
+            <LinearLayout
+                android:id="@+id/slidermenu1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:background="@drawable/list_selector"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/menu_image_size"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/menu_image_margin"
+                    android:src="@drawable/logo1" />
+
+                <TextView
+                    android:id="@+id/menu1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/menu_text_margin"
+                    android:gravity="center_vertical"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                    android:paddingRight="@dimen/menu_text_margin"
+                    android:text="@string/nav_1"
+                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                    android:textColor="@color/list_item_title"
+                    android:textSize="@dimen/menu_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#484848" />
+
+            <LinearLayout
+                android:id="@+id/slidermenu2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:background="@drawable/list_selector"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/menu_image_size"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/menu_image_margin"
+                    android:src="@drawable/logo2" />
+
+                <TextView
+                    android:id="@+id/menu2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/menu_text_margin"
+                    android:gravity="center_vertical"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                    android:paddingRight="@dimen/menu_text_margin"
+                    android:text="@string/nav_2"
+                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                    android:textColor="@color/list_item_title"
+                    android:textSize="@dimen/menu_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#484848" />
+
+            <LinearLayout
+                android:id="@+id/slidermenu3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:background="@drawable/list_selector"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/menu_image_size"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/menu_image_margin"
+                    android:src="@drawable/logo3" />
+
+                <TextView
+                    android:id="@+id/menu3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/menu_text_margin"
+                    android:gravity="center_vertical"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                    android:paddingRight="@dimen/menu_text_margin"
+                    android:text="@string/nav_3"
+                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                    android:textColor="@color/list_item_title"
+                    android:textSize="@dimen/menu_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#484848" />
+
+            <LinearLayout
+                android:id="@+id/slidermenu4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:background="@drawable/list_selector"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/menu_image_size"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/menu_image_margin"
+                    android:src="@drawable/logo4" />
+
+                <TextView
+                    android:id="@+id/menu4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/menu_text_margin"
+                    android:gravity="center_vertical"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                    android:paddingRight="@dimen/menu_text_margin"
+                    android:text="@string/nav_4"
+                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                    android:textColor="@color/list_item_title"
+                    android:textSize="@dimen/menu_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#484848" />
+
+            <LinearLayout
+                android:id="@+id/slidermenu5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:background="@drawable/list_selector"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/menu_image_size"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/menu_image_margin"
+                    android:src="@drawable/logo5" />
+
+                <TextView
+                    android:id="@+id/menu5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/menu_text_margin"
+                    android:gravity="center_vertical"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                    android:paddingRight="@dimen/menu_text_margin"
+                    android:text="@string/nav_5"
+                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                    android:textColor="@color/list_item_title"
+                    android:textSize="@dimen/menu_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#484848" />
+
+            <LinearLayout
+                android:id="@+id/slidermenu6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:background="@drawable/list_selector"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/menu_image_size"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/menu_image_margin"
+                    android:src="@drawable/logo6" />
+
+                <TextView
+                    android:id="@+id/menu6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/menu_text_margin"
+                    android:gravity="center_vertical"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                    android:paddingRight="@dimen/menu_text_margin"
+                    android:text="@string/nav_6"
+                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                    android:textColor="@color/list_item_title"
+                    android:textSize="@dimen/menu_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#484848" />
+
+            <LinearLayout
+                android:id="@+id/slidermenu7"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:background="@drawable/list_selector"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/menu_image_size"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/menu_image_margin"
+                    android:src="@drawable/logo7" />
+
+                <TextView
+                    android:id="@+id/menu7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/menu_text_margin"
+                    android:gravity="center_vertical"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                    android:paddingRight="@dimen/menu_text_margin"
+                    android:text="@string/nav_7"
+                    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                    android:textColor="@color/list_item_title"
+                    android:textSize="@dimen/menu_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#484848" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>
