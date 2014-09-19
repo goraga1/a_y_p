@@ -26,7 +26,7 @@ public class FragmentVideo extends Fragment {
 			Bundle savedInstanceState) {
 
 		View rootView = inflater.inflate(R.layout.fragment_video, container,
-				true);
+				false);
 
 		listView = (ListView) rootView.findViewById(R.id.listViewVideos);
 		adapter = new VideoAdapter(getActivity());

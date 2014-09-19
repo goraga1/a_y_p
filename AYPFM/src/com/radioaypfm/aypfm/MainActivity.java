@@ -57,15 +57,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		aq = new AQuery(MainActivity.this);
 		// / getRegId();
 
-		initFragment(new FragmentPlayer());
-	}
-
-	protected void initFragment(Fragment fragment) {
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager
-				.beginTransaction();
-		fragmentTransaction.replace(android.R.id.content, fragment);
-		fragmentTransaction.commit();
 	}
 
 	public void getRegId() {
@@ -208,7 +199,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new FragmentMain();
+			fragment = new FragmentPlayer();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 1:
