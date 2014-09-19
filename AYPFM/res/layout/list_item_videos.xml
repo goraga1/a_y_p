@@ -9,7 +9,10 @@
         android:layout_width="130dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/video_placeholder" />
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:background="@drawable/video_placeholder"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -26,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="TITLE"
+            android:maxHeight="35dp"
             android:textColor="#f0f0f0"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -36,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Description"
+            android:maxHeight="35dp"
             android:textColor="#f0f0f0"
             android:textSize="12sp" />
 
@@ -45,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="14.11.2014"
+            android:maxHeight="25dp"
             android:textColor="#f0f0f0"
             android:textSize="12sp" />
     </LinearLayout>

@@ -1,5 +1,7 @@
 package com.radioaypfm.aypfm.adapter;
 
+import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +11,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androidquery.AQuery;
 import com.radioaypfm.aypfm.R;
+import com.radioaypfm.aypfm.model.Video;
 import com.radioaypfm.aypfm.util.Constants;
 import com.radioaypfm.aypfm.util.Utilities;
 
@@ -17,11 +21,13 @@ import com.radioaypfm.aypfm.util.Utilities;
 public class VideoAdapter extends BaseAdapter {
 	Context c;
 	private final LayoutInflater mLayoutInflater;
+	ArrayList<Video> videos;
 
-	public VideoAdapter(Context context) {
+	public VideoAdapter(Context context, ArrayList<Video> allVideos) {
 		this.c = context;
 		mLayoutInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		this.videos = allVideos;
 	}
 
 	@Override
@@ -47,6 +53,14 @@ public class VideoAdapter extends BaseAdapter {
 			holder = (ViewHolder) view.getTag();
 		}
 
+		Video v = videos.get(position);
+		AQuery aq = new AQuery(view);
+		aq.id(holder.image).image(v.getThumbnail(), true, true, 0, 0, null,
+				AQuery.FADE_IN, 1.0f);
+		aq.id(holder.title).text(v.getTitle());
+		aq.id(holder.desc).text(v.getDesc());
+		aq.id(holder.date).text("Date : " + v.getDate().substring(0, 10));
+
 		return view;
 
 	}
@@ -61,7 +75,7 @@ public class VideoAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		return 10;
+		return videos.size();
 	}
 
 	@Override
