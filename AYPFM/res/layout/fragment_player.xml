@@ -29,6 +29,11 @@
         android:layout_margin="10dp"
         android:background="@drawable/play_radio" />
 
+    <SeekBar
+        android:id="@+id/volSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

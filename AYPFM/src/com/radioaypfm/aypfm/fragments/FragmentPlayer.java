@@ -3,10 +3,10 @@ package com.radioaypfm.aypfm.fragments;
 import java.io.IOException;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
-import android.media.MediaPlayer.OnPreparedListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 
-import com.radioaypfm.aypfm.MainActivity;
 import com.radioaypfm.aypfm.R;
 
 public class FragmentPlayer extends Fragment {
@@ -28,7 +28,7 @@ public class FragmentPlayer extends Fragment {
 	private Button btn;
 	private boolean isPlayingButton;
 	private MediaPlayer mediaPlayer;
-
+	private AudioManager audioManager;
 	private boolean intialStage = true;
 
 	@Override
@@ -68,6 +68,32 @@ public class FragmentPlayer extends Fragment {
 			}
 
 		});
+
+		// for Volume SeekBar--------------------------------
+		SeekBar volumeCtrl = (SeekBar) rootView.findViewById(R.id.volSeekBar);
+		audioManager = (AudioManager) getActivity().getSystemService(
+				Context.AUDIO_SERVICE);
+		int maxVolume = audioManager
+				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		int curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
+		volumeCtrl.setMax(maxVolume);
+		volumeCtrl.setProgress(curVolume);
+		volumeCtrl
+				.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+					public void onStopTrackingTouch(SeekBar seekBar) {
+					}
+
+					public void onStartTrackingTouch(SeekBar seekBar) {
+					}
+
+					public void onProgressChanged(SeekBar seekBar,
+							int progress, boolean fromUser) {
+						audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+								progress, 0);
+					}
+				});
 
 		return rootView;
 	}
