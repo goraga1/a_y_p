@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:background="#000"
     android:gravity="center"
     android:orientation="vertical" >
 
@@ -10,6 +10,7 @@
         android:id="@+id/radioLogo"
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:layout_gravity="top|center_horizontal"
         android:layout_margin="10dp"
         android:src="@drawable/ayp_logo_color" />
 
@@ -29,10 +30,37 @@
         android:layout_margin="10dp"
         android:background="@drawable/play_radio" />
 
-    <SeekBar
-        android:id="@+id/volSeekBar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:src="@drawable/no_sound" />
+
+        <SeekBar
+            android:id="@+id/volSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:thumb="@null" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:src="@drawable/sound" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,6 +69,6 @@
         android:gravity="center"
         android:text="FREQUENCE RADIO AYP \n99,5 FM"
         android:textColor="#fff"
-        android:textSize="25dp" />
+        android:textSize="20dp" />
 
 </LinearLayout>

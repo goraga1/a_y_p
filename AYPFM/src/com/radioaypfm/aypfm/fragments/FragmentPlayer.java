@@ -11,9 +11,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -30,6 +32,7 @@ public class FragmentPlayer extends Fragment {
 	private MediaPlayer mediaPlayer;
 	private AudioManager audioManager;
 	private boolean intialStage = true;
+	SeekBar volumeCtrl;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,8 +72,8 @@ public class FragmentPlayer extends Fragment {
 
 		});
 
-		// for Volume SeekBar--------------------------------
-		SeekBar volumeCtrl = (SeekBar) rootView.findViewById(R.id.volSeekBar);
+		// Volume SeekBar
+		volumeCtrl = (SeekBar) rootView.findViewById(R.id.volSeekBar);
 		audioManager = (AudioManager) getActivity().getSystemService(
 				Context.AUDIO_SERVICE);
 		int maxVolume = audioManager
@@ -94,6 +97,23 @@ public class FragmentPlayer extends Fragment {
 								progress, 0);
 					}
 				});
+
+		rootView.setOnKeyListener(new OnKeyListener() {
+
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+					int index = volumeCtrl.getProgress();
+					volumeCtrl.setProgress(index + 1);
+					return true;
+				} else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+					int index = volumeCtrl.getProgress();
+					volumeCtrl.setProgress(index - 1);
+					return true;
+				}
+				return false;
+			}
+		});
 
 		return rootView;
 	}
