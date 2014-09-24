@@ -115,6 +115,33 @@ public class FragmentPlayer extends Fragment {
 			}
 		});
 
+		rootView.findViewById(R.id.noSound).setOnClickListener(
+				new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						if (mediaPlayer.isPlaying()
+								&& volumeCtrl.getProgress() != 0) {
+							volumeCtrl.setProgress(0);
+						}
+					}
+				});
+
+		rootView.findViewById(R.id.maxSound).setOnClickListener(
+				new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						if (mediaPlayer.isPlaying()
+								&& volumeCtrl.getProgress() != 100) {
+							volumeCtrl.setProgress(100);
+						}
+					}
+				});
+		
+		
 		return rootView;
 	}
 
