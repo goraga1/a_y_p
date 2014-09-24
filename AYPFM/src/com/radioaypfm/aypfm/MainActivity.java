@@ -6,6 +6,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ActionBar;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +20,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +33,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.radioaypfm.aypfm.fragments.FragmentInfo;
 import com.radioaypfm.aypfm.fragments.FragmentMain;
 import com.radioaypfm.aypfm.fragments.FragmentPlayer;
 import com.radioaypfm.aypfm.fragments.FragmentVideo;
@@ -134,7 +141,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		infoButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-
+				openInfoDialog(MainActivity.this);
 			}
 		});
 
@@ -159,6 +166,43 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 				.setOnClickListener(this);
 		((LinearLayout) findViewById(R.id.slidermenu7))
 				.setOnClickListener(this);
+	}
+
+	protected void openInfoDialog(Context context) {
+		Dialog dialog = new Dialog(context);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		/*
+		 * dialog.getWindow().clearFlags(
+		 * WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+		 */
+		dialog.getWindow().setGravity(Gravity.CENTER);
+		dialog.getWindow().setBackgroundDrawableResource(
+				android.R.color.transparent);
+
+		WebView wv = new WebView(context);
+		wv.loadUrl("http://www.google.com");
+		wv.setWebViewClient(new WebViewClient() {
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				view.loadUrl(url);
+				return true;
+			}
+		});
+		wv.setAlpha(0.85f);
+		dialog.setCancelable(true);
+		dialog.setContentView(wv);
+
+		if (!dialog.isShowing())
+			dialog.show();
+		else
+			dialog.dismiss();
+
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+		Window window = dialog.getWindow();
+		lp.copyFrom(window.getAttributes());
+		lp.width = 400;
+		lp.height = 650;
+		window.setAttributes(lp);
 	}
 
 	@Override
@@ -199,15 +243,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new FragmentPlayer();
+			fragment = new FragmentMain();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 1:
-			fragment = new FragmentMain();
+			fragment = new FragmentInfo();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 2:
-			fragment = new FragmentMain();
+			fragment = new FragmentPlayer();
 			TAG = "HOME_FRAGMENT";
 			break;
 		case 3:
