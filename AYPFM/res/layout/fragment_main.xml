@@ -7,14 +7,14 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
         android:src="@drawable/ayp_logo_color" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:gravity="center_horizontal"
         android:text="La radio de la communauté Arménienne de France"
         android:textColor="#FFF" />
@@ -27,18 +27,20 @@
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/mainPlayButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/play_radio" />
+            android:background="@drawable/live" />
 
         <Button
+            android:id="@+id/mainInfoButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/play_radio" />
+            android:background="@drawable/nous" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,18 +51,28 @@
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/mainVideoButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/play_radio" />
+            android:background="@drawable/videos" />
 
         <Button
+            android:id="@+id/mainContactButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/play_radio" />
+            android:background="@drawable/contact" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/mainSoundButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/annonces" />
 
 </LinearLayout>
