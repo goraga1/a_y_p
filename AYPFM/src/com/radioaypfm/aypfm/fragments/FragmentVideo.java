@@ -29,103 +29,95 @@ import com.radioaypfm.aypfm.util.Constants;
 import com.radioaypfm.aypfm.util.Utilities;
 
 public class FragmentVideo extends Fragment {
-	ListView listView;
-	VideoAdapter adapter;
-	AQuery aq;
-	ArrayList<Video> videos;
-	int index = 10;
-	int count = 10;
-	String url = "";
+  ListView listView;
+  VideoAdapter adapter;
+  AQuery aq;
+  ArrayList<Video> videos;
+  int index = 15;
+  int count = 15;
+  String url = "";
 
-	public FragmentVideo() {
-	}
+  public FragmentVideo() {}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_video, container,
-				false);
+    View rootView = inflater.inflate(R.layout.fragment_video, container, false);
 
-		listView = (ListView) rootView.findViewById(R.id.listViewVideos);
-		setupLoadVideosButton((Button) rootView
-				.findViewById(R.id.loadMoreVideos));
+    listView = (ListView) rootView.findViewById(R.id.listViewVideos);
+    setupLoadVideosButton((Button) rootView.findViewById(R.id.loadMoreVideos));
 
-		videos = new ArrayList<Video>();
-		aq = new AQuery(getActivity());
-		getChannelData();
+    videos = new ArrayList<Video>();
+    aq = new AQuery(getActivity());
+    getChannelData();
 
-		return rootView;
-	}
+    return rootView;
+  }
 
-	public void getChannelData() {
+  public void getChannelData() {
 
-		url = "https://gdata.youtube.com/feeds/api/users/UCJ2cGU-CskWXRmzql5RgjKg/uploads?&alt=json&max-results="
-				+ String.valueOf(index);
+    url =
+        "https://gdata.youtube.com/feeds/api/users/UCEJ0AWCTu7mWqjVjX8CTiAg/uploads?&alt=json&max-results="
+            + String.valueOf(index);
 
-		aq.ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
-			@Override
-			public void callback(String url, JSONObject json, AjaxStatus status) {
-				if (json != null) {
-					try {
-						videos = JSONParser.parseChannelData(getActivity(),
-								json);
-						adapter = new VideoAdapter(getActivity(), videos);
-						listView.setAdapter(adapter);
+    aq.ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
+      @Override
+      public void callback(String url, JSONObject json, AjaxStatus status) {
+        if (json != null) {
+          try {
+            videos = JSONParser.parseChannelData(getActivity(), json);
+            adapter = new VideoAdapter(getActivity(), videos);
+            listView.setAdapter(adapter);
 
-						listView.setOnItemClickListener(new OnItemClickListener() {
-							@Override
-							public void onItemClick(AdapterView<?> parent,
-									View view, int position, long id) {
-								startActivity(new Intent(
-										Intent.ACTION_VIEW,
-										Uri.parse(videos.get(position).getUrl())));
-							}
-						});
-					} catch (JSONException e) {
-						e.printStackTrace();
-					} catch (NullPointerException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-	}
+            listView.setOnItemClickListener(new OnItemClickListener() {
+              @Override
+              public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(videos.get(position)
+                    .getUrl())));
+              }
+            });
+          } catch (JSONException e) {
+            e.printStackTrace();
+          } catch (NullPointerException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    });
+  }
 
-	public void loadMoreVideos() {
-		String newUrl = url + "&start-index=" + String.valueOf(index + 1);
+  public void loadMoreVideos() {
+    String newUrl = url + "&start-index=" + String.valueOf(index + 1);
 
-		aq.ajax(newUrl, JSONObject.class, new AjaxCallback<JSONObject>() {
-			@Override
-			public void callback(String url, JSONObject json, AjaxStatus status) {
-				if (json != null) {
-					try {
-						ArrayList<Video> newVideos = JSONParser
-								.parseChannelData(getActivity(), json);
-						videos.addAll(newVideos);
-						adapter.notifyDataSetChanged();
-						newVideos.clear();
-						newVideos = null;
-						index += count;
-					} catch (JSONException e) {
-						e.printStackTrace();
-					} catch (NullPointerException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-	}
+    aq.ajax(newUrl, JSONObject.class, new AjaxCallback<JSONObject>() {
+      @Override
+      public void callback(String url, JSONObject json, AjaxStatus status) {
+        if (json != null) {
+          try {
+            ArrayList<Video> newVideos = JSONParser.parseChannelData(getActivity(), json);
+            videos.addAll(newVideos);
+            adapter.notifyDataSetChanged();
+            newVideos.clear();
+            newVideos = null;
+            index += count;
+          } catch (JSONException e) {
+            e.printStackTrace();
+          } catch (NullPointerException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    });
+  }
 
-	protected void setupLoadVideosButton(Button btn) {
-		Utilities.setButtonTypeface(Constants.FONT_HELVETICA_ROMAN, btn,
-				getActivity());
-		btn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				loadMoreVideos();
-			}
-		});
-	}
+  protected void setupLoadVideosButton(Button btn) {
+    Utilities.setButtonTypeface(Constants.FONT_HELVETICA_ROMAN, btn, getActivity());
+    btn.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        loadMoreVideos();
+      }
+    });
+  }
 
 }
