@@ -45,6 +45,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.radioaypfm.aypfm.fragments.FragmentAdvertisement;
 import com.radioaypfm.aypfm.fragments.FragmentInfo;
 import com.radioaypfm.aypfm.fragments.FragmentMain;
 import com.radioaypfm.aypfm.fragments.FragmentPlayer;
@@ -292,7 +293,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         TAG = "HOME_FRAGMENT";
         break;
       case 4:
-        fragment = new FragmentMain();
+        fragment = new FragmentAdvertisement();
         TAG = "HOME_FRAGMENT";
         break;
       case 5:
