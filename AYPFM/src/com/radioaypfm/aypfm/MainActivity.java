@@ -38,6 +38,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -218,8 +219,16 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
           runOnUiThread(new Runnable() {
             @Override
             public void run() {
-              ((TextView) dialog.findViewById(R.id.title)).setText(title);
-              ((TextView) dialog.findViewById(R.id.text)).setText(text);
+              ((ProgressBar) dialog.findViewById(R.id.progressBar)).setVisibility(View.GONE);
+
+              TextView titleView = (TextView) dialog.findViewById(R.id.title);
+              TextView textView = (TextView) dialog.findViewById(R.id.text);
+              titleView.setText(title);
+              textView.setText(text);
+              Utilities.setTextviewTypeface(Constants.FONT_HELVETICA_ROMAN, titleView,
+                  MainActivity.this);
+              Utilities.setTextviewTypeface(Constants.FONT_HELVETICA_ROMAN, textView,
+                  MainActivity.this);
             }
           });
 
@@ -258,10 +267,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         displayView(4);
         break;
       case R.id.slidermenu6:
-        displayView(5);
+        Utilities.phoneCall("1234567890", MainActivity.this);
         break;
       case R.id.slidermenu7:
-        displayView(5);
+        Utilities.sendEmail(MainActivity.this);
         break;
       default:
         break;

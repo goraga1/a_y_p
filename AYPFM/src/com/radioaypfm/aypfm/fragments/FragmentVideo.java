@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
@@ -36,6 +37,7 @@ public class FragmentVideo extends Fragment {
   int index = 15;
   int count = 15;
   String url = "";
+  ProgressBar progressBar;
 
   public FragmentVideo() {}
 
@@ -44,6 +46,7 @@ public class FragmentVideo extends Fragment {
 
     View rootView = inflater.inflate(R.layout.fragment_video, container, false);
 
+    progressBar = (ProgressBar) rootView.findViewById(R.id.progressBarVideo);
     listView = (ListView) rootView.findViewById(R.id.listViewVideos);
     setupLoadVideosButton((Button) rootView.findViewById(R.id.loadMoreVideos));
 
@@ -80,6 +83,8 @@ public class FragmentVideo extends Fragment {
             e.printStackTrace();
           } catch (NullPointerException e) {
             e.printStackTrace();
+          } finally {
+            hideProgressBar();
           }
         }
       }
@@ -87,6 +92,7 @@ public class FragmentVideo extends Fragment {
   }
 
   public void loadMoreVideos() {
+    showProgressBar();
     String newUrl = url + "&start-index=" + String.valueOf(index + 1);
 
     aq.ajax(newUrl, JSONObject.class, new AjaxCallback<JSONObject>() {
@@ -104,6 +110,8 @@ public class FragmentVideo extends Fragment {
             e.printStackTrace();
           } catch (NullPointerException e) {
             e.printStackTrace();
+          } finally {
+            hideProgressBar();
           }
         }
       }
@@ -118,6 +126,14 @@ public class FragmentVideo extends Fragment {
         loadMoreVideos();
       }
     });
+  }
+
+  protected void showProgressBar() {
+    progressBar.setVisibility(View.VISIBLE);
+  }
+
+  protected void hideProgressBar() {
+    progressBar.setVisibility(View.INVISIBLE);
   }
 
 }

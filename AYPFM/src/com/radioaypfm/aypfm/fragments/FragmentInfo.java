@@ -17,16 +17,19 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.radioaypfm.aypfm.R;
 import com.radioaypfm.aypfm.util.Constants;
+import com.radioaypfm.aypfm.util.Utilities;
 
 public class FragmentInfo extends Fragment {
 
@@ -35,8 +38,7 @@ public class FragmentInfo extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View fragment = inflater.inflate(R.layout.fragment_info, container, false);
-
-
+    final Activity activity = getActivity();
 
     new Thread(new Runnable() {
       @Override
@@ -61,11 +63,19 @@ public class FragmentInfo extends Fragment {
           final String text = Html.fromHtml(desc).toString();
 
 
-          getActivity().runOnUiThread(new Runnable() {
+          activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-              ((TextView) fragment.findViewById(R.id.title)).setText(title);
-              ((TextView) fragment.findViewById(R.id.text)).setText(text);
+              ((ProgressBar) fragment.findViewById(R.id.progressBar)).setVisibility(View.GONE);
+
+              TextView titleView = (TextView) fragment.findViewById(R.id.title);
+              TextView textView = (TextView) fragment.findViewById(R.id.text);
+              titleView.setText(title);
+              textView.setText(text);
+              Utilities.setTextviewTypeface(Constants.FONT_HELVETICA_ROMAN, titleView,
+                  getActivity());
+              Utilities
+                  .setTextviewTypeface(Constants.FONT_HELVETICA_ROMAN, textView, getActivity());
             }
           });
 
@@ -77,6 +87,8 @@ public class FragmentInfo extends Fragment {
         } catch (IOException e) {
           e.printStackTrace();
         } catch (JSONException e) {
+          e.printStackTrace();
+        } catch (NullPointerException e) {
           e.printStackTrace();
         }
       }

@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -80,6 +82,20 @@ public class Utilities {
       }
     }
     return false;
+  }
+
+  public static void phoneCall(String number, Context context) {
+    Intent callIntent = new Intent(Intent.ACTION_CALL);
+    callIntent.setData(Uri.parse("tel:" + number));
+    context.startActivity(callIntent);
+  }
+
+  public static void sendEmail(Context c) {
+    Intent intent = new Intent(Intent.ACTION_SEND);
+    intent.setType("text/plain");
+    intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+    intent.putExtra(Intent.EXTRA_SUBJECT, "Contact AYP FM");
+    c.startActivity(Intent.createChooser(intent, "Send Email"));
   }
 
 }

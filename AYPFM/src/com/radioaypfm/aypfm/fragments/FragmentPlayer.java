@@ -17,6 +17,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.media.AudioManager;
@@ -34,6 +35,7 @@ import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.radioaypfm.aypfm.R;
@@ -51,11 +53,19 @@ public class FragmentPlayer extends Fragment {
   private boolean intialStage = true;
   private SeekBar volumeCtrl;
   private String RADIO_URL = "";
+  private Activity activity;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+    activity = getActivity();
     View rootView = inflater.inflate(R.layout.fragment_player, container, false);
+    Utilities.setTextviewTypeface(Constants.FONT_HELVETICA_ROMAN,
+        ((TextView) rootView.findViewById(R.id.playerTitle)), activity);
+    Utilities.setTextviewTypeface(Constants.FONT_HELVETICA_ROMAN,
+        ((TextView) rootView.findViewById(R.id.radioDesc)), activity);
+    Utilities.setTextviewTypeface(Constants.FONT_HELVETICA_ROMAN,
+        ((TextView) rootView.findViewById(R.id.radioDesc2)), activity);
+
 
     btn = (Button) rootView.findViewById(R.id.playButton);
     mediaPlayer = new MediaPlayer();
@@ -65,8 +75,8 @@ public class FragmentPlayer extends Fragment {
       @Override
       public void onClick(View v) {
 
-        if (RADIO_URL.isEmpty() || !Utilities.isNetworkAvailable(getActivity())) {
-          Toast.makeText(getActivity(), "Channel not found", Toast.LENGTH_SHORT).show();
+        if (RADIO_URL.isEmpty() || !Utilities.isNetworkAvailable(activity)) {
+          Toast.makeText(activity, "Channel not found", Toast.LENGTH_SHORT).show();
           return;
         }
 
@@ -94,7 +104,7 @@ public class FragmentPlayer extends Fragment {
 
     // Volume SeekBar
     volumeCtrl = (SeekBar) rootView.findViewById(R.id.volSeekBar);
-    audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+    audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
     int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
     int curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
@@ -153,7 +163,7 @@ public class FragmentPlayer extends Fragment {
     new Thread(new Runnable() {
       @Override
       public void run() {
-        getRadioUrl();
+        getRadioUrl(activity);
       }
     }).start();
 
@@ -166,7 +176,7 @@ public class FragmentPlayer extends Fragment {
     super.onResume();
   }
 
-  public void getRadioUrl() {
+  public void getRadioUrl(Activity a) {
 
 
     try {
@@ -185,7 +195,7 @@ public class FragmentPlayer extends Fragment {
       JSONObject data = obj.optJSONObject("data");
       RADIO_URL = data.optString("radiourl");
 
-      getActivity().runOnUiThread(new Runnable() {
+      activity.runOnUiThread(new Runnable() {
         @Override
         public void run() {
           btn.setEnabled(true);
@@ -200,6 +210,8 @@ public class FragmentPlayer extends Fragment {
     } catch (IOException e) {
       e.printStackTrace();
     } catch (JSONException e) {
+      e.printStackTrace();
+    } catch (NullPointerException e) {
       e.printStackTrace();
     }
   }
@@ -264,7 +276,7 @@ public class FragmentPlayer extends Fragment {
     }
 
     public Player() {
-      progress = new ProgressDialog(getActivity());
+      progress = new ProgressDialog(activity);
     }
 
     @Override
