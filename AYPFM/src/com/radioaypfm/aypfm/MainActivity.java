@@ -186,8 +186,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
     Window window = dialog.getWindow();
     lp.copyFrom(window.getAttributes());
-    lp.width = 600;
-    lp.height = 900;
+    lp.width = (int) getResources().getDimension(R.dimen.dialog_width);
+    lp.height = (int) getResources().getDimension(R.dimen.dialog_height);
     window.setAttributes(lp);
 
     if (!Utilities.isNetworkAvailable(MainActivity.this))
