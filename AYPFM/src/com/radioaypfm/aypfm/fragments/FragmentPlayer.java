@@ -221,7 +221,6 @@ public class FragmentPlayer extends Fragment {
 
     @Override
     protected Boolean doInBackground(String... params) {
-      // TODO Auto-generated method stub
       Boolean prepared;
       try {
 
@@ -242,20 +241,16 @@ public class FragmentPlayer extends Fragment {
         mediaPlayer.prepare();
         prepared = true;
       } catch (IllegalArgumentException e) {
-        // TODO Auto-generated catch block
         Log.d("IllegarArgument", e.getMessage());
         prepared = false;
         e.printStackTrace();
       } catch (SecurityException e) {
-        // TODO Auto-generated catch block
         prepared = false;
         e.printStackTrace();
       } catch (IllegalStateException e) {
-        // TODO Auto-generated catch block
         prepared = false;
         e.printStackTrace();
       } catch (IOException e) {
-        // TODO Auto-generated catch block
         prepared = false;
         e.printStackTrace();
       }
@@ -264,7 +259,6 @@ public class FragmentPlayer extends Fragment {
 
     @Override
     protected void onPostExecute(Boolean result) {
-      // TODO Auto-generated method stub
       super.onPostExecute(result);
       if (progress.isShowing()) {
         progress.cancel();
@@ -281,7 +275,6 @@ public class FragmentPlayer extends Fragment {
 
     @Override
     protected void onPreExecute() {
-      // TODO Auto-generated method stub
       super.onPreExecute();
       this.progress.setMessage("Buffering...");
       this.progress.show();
