@@ -85,7 +85,6 @@ public class FragmentMain extends Fragment implements OnClickListener {
       case 4:
         fragment = new FragmentAdvertisement();
         break;
-
       default:
         break;
     }
@@ -95,9 +94,7 @@ public class FragmentMain extends Fragment implements OnClickListener {
       FragmentTransaction transaction = fragmentManager.beginTransaction();
       transaction.replace(R.id.frame_container, fragment, TAG);
       transaction.commit();
-
     } else {
-      // Log.e("MainActivity", "Error in creating fragment");
     }
   }
 }

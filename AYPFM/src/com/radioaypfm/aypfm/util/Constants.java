@@ -5,6 +5,7 @@ public class Constants {
   public static final String API_URL = DOMAIN + "/_mob_api/";
   public static final String AUTH_KEY = "4a75465ffef61e230a03dc350107829b";
 
+  //Keys
   public static final String KEY_SUCCESS = "success";
   public static final String KEY_ERROR = "error";
   public static final String KEY_ERROR_MSG = "error_msg";
@@ -16,7 +17,8 @@ public class Constants {
   public static final String KEY_EMAIL = "email";
   public static final String KEY_PASS = "password";
   public static final String KEY_CREATED_AT = "created_at";
-
+  
+  //Fonts
   public static String FONT_HELVETICA_ROMAN = "HelveticaNeueLTStd-Th.otf";
   public static String FONT_HELVETICA_MD = "HelveticaNeueLTStd-Md.otf";
 }
