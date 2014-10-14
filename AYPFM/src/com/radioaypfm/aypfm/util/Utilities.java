@@ -55,6 +55,10 @@ public class Utilities {
     dialog.show();
   }
 
+  public static void setListviewItemTypeface(Typeface tf, TextView textView, Context c) {
+    textView.setTypeface(tf);
+  }
+
   public static void setTextviewTypeface(String fontName, TextView textView, Context c) {
     Typeface tf = Typeface.createFromAsset(c.getAssets(), fontName);
     textView.setTypeface(tf);
