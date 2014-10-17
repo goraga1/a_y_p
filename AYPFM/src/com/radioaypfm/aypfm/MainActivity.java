@@ -52,7 +52,6 @@ import com.radioaypfm.aypfm.fragments.FragmentMain;
 import com.radioaypfm.aypfm.fragments.FragmentPlayer;
 import com.radioaypfm.aypfm.fragments.FragmentVideo;
 import com.radioaypfm.aypfm.util.Constants;
-import com.radioaypfm.aypfm.util.PreferenceUtilities;
 import com.radioaypfm.aypfm.util.Utilities;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
@@ -61,7 +60,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
   private AQuery aq;
   GoogleCloudMessaging gcm;
   String regid;
-  String PROJECT_NUMBER = "00000000000";
+  String PROJECT_NUMBER = "968974903106";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +75,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     }
 
     aq = new AQuery(MainActivity.this);
-    // / getRegId();
+    getRegId();
 
   }
 
@@ -102,28 +101,20 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
       @Override
       protected void onPostExecute(String msg) {
-        sendRegId(regid);
+        sendRegId();
       }
     }.execute(null, null, null);
   }
 
-  private void sendRegId(String regId) {
-    String token =
-        PreferenceUtilities.readString(MainActivity.this, Constants.KEY_ACCESS_TOKEN, "");
-    String url = Constants.API_URL + token + "/gcm/" + token;
-    JSONObject input = new JSONObject();
-    try {
-      input.put("gcmId", regId);
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
-    aq.put(url, input, JSONObject.class, new AjaxCallback<JSONObject>() {
+  private void sendRegId() {
+    String url = "http://radio-aypfm.com/_mob_api/device.php?new=" + regid;
+    aq.ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
       @Override
       public void callback(String url, JSONObject json, AjaxStatus status) {
-
+        if (json != null)
+          System.out.println("AYP GCM Response: " + json.toString());
       }
     });
-
   }
 
   @Override
@@ -186,9 +177,16 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
     Window window = dialog.getWindow();
     lp.copyFrom(window.getAttributes());
-    lp.width = (int) getResources().getDimension(R.dimen.dialog_width);
-    lp.height = (int) getResources().getDimension(R.dimen.dialog_height);
+    lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+    lp.height = WindowManager.LayoutParams.MATCH_PARENT;
     window.setAttributes(lp);
+
+    dialog.findViewById(R.id.dialogLayout).setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        dialog.dismiss();
+      }
+    });
 
     if (!Utilities.isNetworkAvailable(MainActivity.this))
       return;
@@ -267,7 +265,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         displayView(4);
         break;
       case R.id.slidermenu6:
-        Utilities.phoneCall("1234567890", MainActivity.this);
+        Utilities.openWebsite(MainActivity.this);
         break;
       case R.id.slidermenu7:
         Utilities.sendEmail(MainActivity.this);

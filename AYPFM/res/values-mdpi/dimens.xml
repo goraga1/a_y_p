@@ -14,5 +14,7 @@
     <dimen name="dialog_width">160dp</dimen>
     <dimen name="button_width">100dp</dimen>
     <dimen name="button_height">30dp</dimen>
+    <dimen name="content_title">18sp</dimen>
+    <dimen name="content_text">14sp</dimen>
 
 </resources>

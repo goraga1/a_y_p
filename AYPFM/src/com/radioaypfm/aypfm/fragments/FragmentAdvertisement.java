@@ -27,12 +27,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.radioaypfm.aypfm.R;
 import com.radioaypfm.aypfm.util.Constants;
-import com.radioaypfm.aypfm.util.Utilities;
 
 public class FragmentAdvertisement extends Fragment implements OnClickListener {
   ImageView banner;
@@ -42,8 +40,7 @@ public class FragmentAdvertisement extends Fragment implements OnClickListener {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View fragment = inflater.inflate(R.layout.fragment_adver, container, false);
-    Utilities.setTextviewTypeface(Constants.FONT_HELVETICA_ROMAN,
-        ((TextView) fragment.findViewById(R.id.text1)), getActivity());
+
     banner = (ImageView) fragment.findViewById(R.id.banner);
     banner.setOnClickListener(this);
 
